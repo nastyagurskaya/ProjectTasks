@@ -10,12 +10,19 @@ namespace ProjectTasks.Pages
 {
     public partial class MainPage : System.Web.UI.Page
     {
-        //private Storage repository = new Storage();
-
+        /// <summary>
+        /// Get all Tasks
+        /// </summary>
+        /// <returns>
+        /// List of Tasks
+        /// </returns>
         public IEnumerable<Task> GetTasks()
         {
             return StorageTasks.Repository.Tasks;
         }
+        /// <summary>
+        /// Delete Task from Database
+        /// </summary>
         public void DeleteTask(int TaskID)
         {
             Task myTsk = StorageTasks.Repository.Tasks.Where(p => p.Id == TaskID).FirstOrDefault();
@@ -24,6 +31,9 @@ namespace ProjectTasks.Pages
                 StorageTasks.Repository.DeleteTask(myTsk);
             }
         }
+        /// <summary>
+        /// Page_Load method
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)

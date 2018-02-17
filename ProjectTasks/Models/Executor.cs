@@ -4,19 +4,21 @@ namespace ProjectTasks
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-   
+    /// <summary>
+    /// Class corresponds to the Table Executor
+    /// </summary
     public partial class Executor
     {
         public Executor()
         {
             //Task = new HashSet<Task>();
         }
-
+        
         public int Id { get; set; }
 
         public string Surname { get; set; }
 
-        
+
         public string Name { get; set; }
 
         public string Patronymic_ { get; set; }

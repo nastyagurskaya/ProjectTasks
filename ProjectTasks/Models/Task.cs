@@ -4,7 +4,9 @@ namespace ProjectTasks
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-   
+    /// <summary>
+    /// Class corresponds to the Table Task
+    /// </summary
     public partial class Task
     {
         public int Id { get; set; }

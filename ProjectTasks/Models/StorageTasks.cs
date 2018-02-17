@@ -8,6 +8,9 @@ using System.Web;
 
 namespace ProjectTasks.Models
 {
+    /// <summary>
+    /// Class for work with ETask table content
+    /// </summary>
     public class StorageTasks
     {
         private static SqlConnection conn;
@@ -18,6 +21,9 @@ namespace ProjectTasks.Models
             get;
             set;
         }
+        /// <summary>
+        /// Selecting/Updating data in the list of Tasks
+        /// </summary>
         public void Update()
         {
             OpenConn();
@@ -72,35 +78,44 @@ namespace ProjectTasks.Models
                 CloseConn();
             }
         }
-
+        /// <summary>
+        /// Static constructor
+        /// </summary>
         static StorageTasks()
         {
             _storage = new StorageTasks();
         }
-
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         private StorageTasks()
         {
             Tasks = new List<Task>();
-            
             Update();
         }
+        /// <summary>
+        /// Open connection with Database
+        /// </summary>
         private void OpenConn()
         {
-            // var connSb = new SqlConnectionStringBuilder();
-            ////connSb. = "Microsoft.Jet.OLEDB.4.0";
-            //connSb.DataSource = @"|DataDirectory|\ProjectDatabase.mdf";
-            //var connStr = connSb.ToString();
-            //connSb.ConnectionString = "data source=(Localdb)\\MSSQLLocalDB;Initial Catalog=|DataDirectory|\\ProjectDatabase.mdf;integrated security=True;";
             conn = new SqlConnection();
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["ProjectModel1"].ConnectionString;
             conn.Open();
         }
+        /// <summary>
+        /// Close connection with Database
+        /// </summary>
         private void CloseConn()
         {
             if (conn != null)
                 conn.Close();
         }
+        /// <summary>
+        /// Repository method
+        /// </summary>
+        /// <returns>
+        /// exemplar of current class
+        /// </returns>
         public static StorageTasks Repository
         {
             get
@@ -108,6 +123,9 @@ namespace ProjectTasks.Models
                 return _storage;
             }
         }
+        /// <summary>
+        /// Update record in the Database
+        /// </summary>
         public void UpdateTask(Task task)
         {
             var comm = new SqlCommand { Connection = conn };
@@ -131,6 +149,9 @@ namespace ProjectTasks.Models
                 CloseConn();
             }
         }
+        /// <summary>
+        /// Delete record from the Database
+        /// </summary>
         public void DeleteTask(Task tsk)
         {
             var comm = new SqlCommand { Connection = conn };
@@ -149,6 +170,9 @@ namespace ProjectTasks.Models
             }
             Update();
         }
+        /// <summary>
+        /// Insert record into the Database
+        /// </summary>
         public void AddTask(Task task)
         {
 

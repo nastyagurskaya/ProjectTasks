@@ -11,8 +11,17 @@ namespace ProjectTasks.Pages
     public partial class Update : System.Web.UI.Page
     {
         public String error = "";
+        /// <value>
+        /// Id of current task
+        /// </value>
         public int ID;
+        /// <value>
+        /// Current task to update
+        /// </value>
         public Task curTask;
+        /// <summary>
+        /// Page_Load method
+        /// </summary>
         protected void Page_Load(object sender, EventArgs e)
         {
            // DataBind();
@@ -26,6 +35,9 @@ namespace ProjectTasks.Pages
             Status.SelectedValue = curTask.Status;
 
         }
+        /// <summary>
+        /// Update task in database
+        /// </summary>
         public void UpdateTask(int TaskID)
         {
             Task myTsk = StorageTasks.Repository.Tasks.Where(p => p.Id == TaskID).FirstOrDefault();
@@ -34,10 +46,19 @@ namespace ProjectTasks.Pages
                 StorageTasks.Repository.UpdateTask(myTsk);
             }
         }
+        /// <summary>
+        /// Get all executors
+        /// </summary>
+        /// <returns>
+        /// List of executors
+        /// </returns>
         public IEnumerable<Executor> GetExecutors()
         {
             return StorageExecutors.Repository.Executors;
         }
+        /// <summary>
+        /// IUpdate button click event
+        /// </summary>
         protected void updateBtn_Click(object sender, EventArgs e)
         {
             if (Request.Form["ExecutorID"] == "")

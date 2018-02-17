@@ -12,6 +12,12 @@ namespace ProjectTasks.Pages
     public partial class Insert : System.Web.UI.Page
     {
         public String error = "";
+        /// <summary>
+        /// Get all executors
+        /// </summary>
+        /// <returns>
+        /// List of executors
+        /// </returns>
         public IEnumerable<Executor> GetExecutors()
         {
             return StorageExecutors.Repository.Executors;
@@ -19,6 +25,9 @@ namespace ProjectTasks.Pages
         protected void Page_Load(object sender, EventArgs e)
         {
         }
+        /// <summary>
+        /// Insert button click event
+        /// </summary>
         protected void insertBtn_Click(object sender, EventArgs e)
         {
             if (Request.Form["ExecutorID"] == "")

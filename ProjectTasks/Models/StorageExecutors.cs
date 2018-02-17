@@ -7,6 +7,9 @@ using System.Web;
 
 namespace ProjectTasks.Models
 {
+    /// <summary>
+    /// Class for work with Executor table content
+    /// </summary>
     public class StorageExecutors
     {
         private static SqlConnection conn;
@@ -17,6 +20,9 @@ namespace ProjectTasks.Models
             get;
             set;
         }
+        /// <summary>
+        /// Selecting/Updating data in the list of Executors
+        /// </summary>
         public void Update()
         {
             OpenConn();
@@ -59,35 +65,45 @@ namespace ProjectTasks.Models
                 CloseConn();
             }
         }
-
+        /// <summary>
+        /// Static constructor
+        /// </summary>
         static StorageExecutors()
         {
             _storage = new StorageExecutors();
         }
-
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         private StorageExecutors()
         {
             Executors = new List<Executor>();
 
             Update();
         }
+        /// <summary>
+        /// Open connection with Database
+        /// </summary>
         private void OpenConn()
         {
-            // var connSb = new SqlConnectionStringBuilder();
-            ////connSb. = "Microsoft.Jet.OLEDB.4.0";
-            //connSb.DataSource = @"|DataDirectory|\ProjectDatabase.mdf";
-            //var connStr = connSb.ToString();
-            //connSb.ConnectionString = "data source=(Localdb)\\MSSQLLocalDB;Initial Catalog=|DataDirectory|\\ProjectDatabase.mdf;integrated security=True;";
             conn = new SqlConnection();
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["ProjectModel1"].ConnectionString;
             conn.Open();
         }
+        /// <summary>
+        /// Close connection with Database
+        /// </summary>
         private void CloseConn()
         {
             if (conn != null)
                 conn.Close();
         }
+        /// <summary>
+        /// Repository method
+        /// </summary>
+        /// <returns>
+        /// exemplar of current class
+        /// </returns>
         public static StorageExecutors Repository
         {
             get
